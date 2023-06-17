@@ -1,12 +1,25 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import OAuth from '../components/OAuth';
+import { toast } from 'react-toastify';
+import { getAuth, sendPasswordResetEmail } from 'firebase/auth';
 
 export default function ForgotPassword() {
   const [email, setemail] = useState("");
 
   function onChange(e){
-    setemail(e.target.valued);
+    setemail(e.target.value);
+  }
+
+  async function onSubmit(e) {
+    e.preventDefault();
+    try {
+      const auth = getAuth();
+      await sendPasswordResetEmail(auth, email);
+      toast.success("パスワード再設定用メールを送信しました。");
+    } catch (error) {
+      toast.error("予期せぬエラーが発生しました。")
+    }
   }
 
   return (
@@ -20,13 +33,13 @@ export default function ForgotPassword() {
           />
         </div>
         <div className='w-full md:w-[67%] lg:w-[40%] lg:ml-20'>
-          <form>
+          <form onSubmit={onSubmit}>
             <div className='ml-4'>
               <p>メールアドレス</p>
             </div>
             <input 
               className="w-full" 
-              type='text' 
+              type='email' 
               id='email' 
               value={ email }
               onChange={onChange}
@@ -46,12 +59,10 @@ export default function ForgotPassword() {
             <div className='flex items-center my-4 before:border-t before:flex-1 before:border-gray-300 after:border-t after:flex-1 after:border-gray-300'>
               <p className='text-center font-semibold mx-4'>OR</p>
             </div>
-            <OAuth>
-
-            </OAuth>
+            <OAuth/>
           </form>
         </div>
       </div>
     </section>  
-  )
+  );
 }

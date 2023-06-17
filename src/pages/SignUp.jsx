@@ -45,7 +45,7 @@ export default function SignUp() {
       formDataCopy.timestamp = serverTimestamp();
 
       await setDoc(doc(db, "users", user.uid), formDataCopy)
-      toast.success("ログインが完了しました。")
+      toast.success("新規登録が完了しました。")
       navigate("/")
 
     } catch (error) {
