@@ -46,7 +46,7 @@ export default function Listing() {
                 slidesPerView={1}
                 navigation
                 pagination={{ type: "progressbar" }}
-                effect="fade"
+                //effect="fade"
                 modules={[EffectFade]}
                 autoplay={{ delay: 2000 }}
             >
