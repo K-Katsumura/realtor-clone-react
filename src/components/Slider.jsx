@@ -60,7 +60,8 @@ export default function Slider() {
                                     backgroundSize: "cover",
                                     //backgroundColor: 'white'
                                 }}
-                                className="w-full h-[300px] overflow-hidden"
+                                //className="w-full h-[300px] overflow-hidden"
+                                className="mx-auto lg:w-[800px] h-[300px] overflow-hidden"
                             ></div>
                             <p className='text-[#f1faee] absolute left-1 top-3 font-medium max-w-[90%] bg-[#457b9d] shadow-lg opacity-90 p-2 rounded-br-3xl'>{data.bookname}</p>
                             <p className='text-[#f1faee] absolute left-1 bottom-3 font-semibold max-w-[90%] bg-[#e63946] shadow-lg opacity-90 p-2 rounded-br-3xl'>

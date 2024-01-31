@@ -52,7 +52,8 @@ export default function Listing() {
             >
                 {listing.imgUrls.map((url, index) => (
                     <SwiperSlide key={index}>
-                        <div className='w-full overflow-hidden h-[300px]'
+                        <div className="mx-auto lg:w-[800px] h-[300px] overflow-hidden"
+                            //className='w-full overflow-hidden h-[300px]'
                             style={{
                                 background: `url(${listing.imgUrls[index]}) center no-repeat`,
                                 backgroundSize: "cover"
