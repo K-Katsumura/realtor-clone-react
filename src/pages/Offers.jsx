@@ -69,7 +69,7 @@ export default function Offers() {
 
 
   return <div className='max-w-6xl mx-auto px-3'>
-    <h1 className='text-3xl text-center mt-6 font-bold mb-6'>変更後Offers</h1>
+    <h1 className='text-3xl text-center mt-6 font-bold mb-6'>Offers</h1>
     {loading ? (
       <Spinner />
     ) : listings && listings.length > 0 ? (
