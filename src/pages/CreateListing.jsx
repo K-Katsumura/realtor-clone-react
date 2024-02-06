@@ -12,7 +12,7 @@ import { Navigate, useNavigate } from 'react-router';
 export default function CreateListing() {
     const navigate = useNavigate();
     const auth = getAuth();
-    const [geolocationEnabled, setGeolocationEnabled] = useState(true);
+    const [geolocationEnabled, setGeolocationEnabled] = useState(false);
     const [loading, setLoading] = useState(false);
     const [formData, setFormData] = useState({
         type: "削除",
