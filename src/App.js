@@ -13,6 +13,9 @@ import CreateListing from "./pages/CreateListing";
 import EditListing from "./pages/EditListing";
 import Listing from "./pages/Listing";
 import Category from "./pages/Category";
+import RegisterBook from "./pages/RegisterBook";
+import EditBooks from "./pages/EditBooks";
+import BookDetail from "./pages/BookDetail";
 
 function App() {
   return (
@@ -31,14 +34,27 @@ function App() {
             path="/category/:categoryName/:listingId" 
             element={<Listing />} 
           />
+          <Route 
+            path="/bookCategory/:bookCategoryName/:bookId" 
+            element={<BookDetail />} 
+          />
           <Route path="/offers" element={<Offers />} />
           <Route path="/category/:categoryName" element={<Category />} />
+
           <Route path="create-listing" element={<PrivateRoute />}>
             <Route path="/create-listing" element={<CreateListing />} />
           </Route>
           <Route path="edit-listing" element={<PrivateRoute />}>
             <Route path="/edit-listing/:listingId" element={<EditListing/>} />
           </Route>
+
+          <Route path="/register-book" element={<PrivateRoute />}>
+            <Route path="/register-book" element={<RegisterBook />} />
+          </Route>
+          <Route path="edit-book" element={<PrivateRoute />}>
+            <Route path="/edit-book/:bookId" element={<EditBooks />} />
+          </Route>
+          
         </Routes>
       </Router>
       <ToastContainer

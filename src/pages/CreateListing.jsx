@@ -71,7 +71,7 @@ export default function CreateListing() {
         setLoading(true);
         if (+DiscountedPrice >= +regularPrice) {
             setLoading(false);
-            toast.error("ディスカウントプライスは通常価格より低く設定してな！これがver2")
+            toast.error("ディスカウントプライスは通常価格より低く設定してな！")
             return
         }
         if (images.length > 6) {
