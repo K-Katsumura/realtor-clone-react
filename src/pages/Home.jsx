@@ -4,8 +4,67 @@ import { collection, getDocs, limit, orderBy, query, where } from 'firebase/fire
 import { db } from '../firebase'
 import { Link } from 'react-router-dom'
 import ListingItem from '../components/ListingItem'
+import BookItem from '../components/BookItem'
 
 export default function Home() {
+  //今すぐ借りられる本
+  const [notOnLoanBooks, setNotOnLoanBooks] = useState(null)
+  useEffect(() => {
+    async function fetchBooks() {
+      try {
+        // get reference
+        const booksRef = collection(db, "books");
+        // create the query
+        const q = query(booksRef, where("status", "==", false), orderBy("timestamp", "desc"), limit(4));
+        // execute the query
+        const querySnap = await getDocs(q);
+        const books = [];
+        querySnap.forEach((doc) => {
+          return books.push({
+            id: doc.id,
+            data: doc.data(),
+          });
+        });
+        setNotOnLoanBooks(books);
+        //console.log(books);
+      } catch (error) {
+        //console.log(error);
+      }
+    }
+    fetchBooks();
+  }, [])
+
+  //貸出中の本
+  const [onLoanBooks, setOnLoanBooks] = useState(null)
+  useEffect(() => {
+    async function fetchBooks() {
+      try {
+        // get reference
+        const booksRef = collection(db, "books");
+        // create the query
+        const q = query(booksRef, where("status", "==", true), orderBy("timestamp", "desc"), limit(4));
+        // execute the query
+        const querySnap = await getDocs(q);
+        const books = [];
+        querySnap.forEach((doc) => {
+          return books.push({
+            id: doc.id,
+            data: doc.data(),
+          });
+        });
+        setOnLoanBooks(books);
+        console.log(books);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchBooks();
+  }, [])
+
+  //ビジネス書
+
+  //技術書
+
   //Offers
   const [offerListings, setOfferListings] = useState(null)
   useEffect(() => {
@@ -92,18 +151,37 @@ export default function Home() {
       <Slider></Slider>
       <div className='max-w-6xl mx-auto pt-4 space-y-6 '>
 
-        {offerListings && offerListings.length > 0 && (
+        {/*今すぐ借りられる本*/}
+        {notOnLoanBooks && notOnLoanBooks.length > 0 && (
           <div className='m-2 mb-6'>
-            <h2 className='px-3 text-2xl mt-6 font-semibold'>Recent offers</h2>
+            <h2 className='px-3 text-2xl mt-6 font-semibold'>今すぐ借りられる本</h2>
             <Link to="/offers">
-              <p className='px-3 text-sm text-blue-600 hover:text-blue-800 transition duration-150 ease-in-out'>Show more offers</p>
+              <p className='px-3 text-sm text-blue-600 hover:text-blue-800 transition duration-150 ease-in-out'>Show more</p>
             </Link>
             <ul className='grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
-              {offerListings.map((listing) => (
-                <ListingItem
-                  key={listing.id}
-                  listing={listing.data}
-                  id={listing.id} />
+              {notOnLoanBooks.map((book) => (
+                <BookItem
+                  key={book.id}
+                  book={book.data}
+                  id={book.id} />
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {/*貸出中の本*/}
+        {onLoanBooks && onLoanBooks.length > 0 && (
+          <div className='m-2 mb-6'>
+            <h2 className='px-3 text-2xl mt-6 font-semibold'>貸出中の本</h2>
+            <Link to="/offers">
+              <p className='px-3 text-sm text-blue-600 hover:text-blue-800 transition duration-150 ease-in-out'>Show more</p>
+            </Link>
+            <ul className='grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
+              {onLoanBooks.map((book) => (
+                <BookItem
+                  key={book.id}
+                  book={book.data}
+                  id={book.id} />
               ))}
             </ul>
           </div>

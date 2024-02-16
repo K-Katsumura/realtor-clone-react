@@ -62,6 +62,7 @@ export default function Profile() {
       const q = query(
         bookRef,
         where("userRef", "==", auth.currentUser.uid),
+        where("status", "==", true),
         orderBy("timestamp", "desc")
       );
 

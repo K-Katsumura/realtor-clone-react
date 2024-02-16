@@ -161,6 +161,7 @@ export default function EditBook() {
             timestamp: serverTimestamp(),
             userRef: auth.currentUser.uid,
         }
+
         delete formDataCopy.images;
 
         const docRef = doc(db, "books", params.bookId);
@@ -190,7 +191,7 @@ export default function EditBook() {
                         id="bookType"
                         value="ビジネス書"
                         onClick={onChange}
-                        className={`mr-3 px-7 py-3 font-medium text-sm uppercase shadow-md rounded hover:shadow-lg focus:shadow-lg active:shadow-lg transition duration-150 ease-in-out w-full ${bookType === "技術書" ? "bg-white text-black" : "bg-slate-600 text-white"
+                        className={`mr-3 px-7 py-3 font-medium text-sm uppercase shadow-md rounded hover:shadow-lg focus:shadow-lg active:shadow-lg transition duration-150 ease-in-out w-full ${bookType === "tech" ? "bg-white text-black" : "bg-slate-600 text-white"
                             }`}
                         disabled>
                         ビジネス書
@@ -199,7 +200,7 @@ export default function EditBook() {
                         id="bookType"
                         value="技術書"
                         onClick={onChange}
-                        className={`ml-3 px-7 py-3 font-medium text-sm uppercase shadow-md rounded hover:shadow-lg focus:shadow-lg active:shadow-lg transition duration-150 ease-in-out w-full ${bookType === "ビジネス書" ? "bg-white text-black" : "bg-slate-600 text-white"
+                        className={`ml-3 px-7 py-3 font-medium text-sm uppercase shadow-md rounded hover:shadow-lg focus:shadow-lg active:shadow-lg transition duration-150 ease-in-out w-full ${bookType === "business" ? "bg-white text-black" : "bg-slate-600 text-white"
                             }`}
                         disabled>
                         技術書
@@ -337,6 +338,7 @@ export default function EditBook() {
                     </button>
                 </div>
 
+                {/*
                 {status && (
                     <div className='flex items-center mb-6'>
                         <div className=''>
@@ -345,17 +347,17 @@ export default function EditBook() {
                             </p>
                             <input type="text"
                                 id="borrower"
-                                value={auth.currentUser.uid}
+                                value={borrower}
                                 onChange={onChange}
                                 placeholder='Borrower'
-                                maxLength="32"
+                                maxLength="128"
                                 minLength="1"
-                                required
                                 className='w-full px-4 py-2 text-xl text-gray-700 bg-white border border-gray-300 rounded transition duration-150 ease-in-out focus:text-gray-700 focus:bg-white focus:border-slate-600'>
                             </input>
                         </div>
                     </div>
                 )}
+                */}
 
                 <button type='submit' className='mb-6 w-full px-7 py-3 bg-blue-600 text-white font-medium text-sm uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out'>
                     決定
