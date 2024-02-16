@@ -62,8 +62,58 @@ export default function Home() {
   }, [])
 
   //ビジネス書
+  const [businessBooks, setBusinessBooks] = useState(null)
+  useEffect(() => {
+    async function fetchBooks() {
+      try {
+        // get reference
+        const booksRef = collection(db, "books");
+        // create the query
+        const q = query(booksRef, where("bookType", "==", "business"), orderBy("timestamp", "desc"), limit(4));
+        // execute the query
+        const querySnap = await getDocs(q);
+        const books = [];
+        querySnap.forEach((doc) => {
+          return books.push({
+            id: doc.id,
+            data: doc.data(),
+          });
+        });
+        setBusinessBooks(books);
+        console.log(books);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchBooks();
+  }, [])
 
   //技術書
+  const [techBooks, setTechBooks] = useState(null)
+  useEffect(() => {
+    async function fetchBooks() {
+      try {
+        // get reference
+        const booksRef = collection(db, "books");
+        // create the query
+        const q = query(booksRef, where("bookType", "==", "tech"), orderBy("timestamp", "desc"), limit(4));
+        // execute the query
+        const querySnap = await getDocs(q);
+        const books = [];
+        querySnap.forEach((doc) => {
+          return books.push({
+            id: doc.id,
+            data: doc.data(),
+          });
+        });
+        setTechBooks(books);
+        console.log(books);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchBooks();
+  }, [])
 
   //Offers
   const [offerListings, setOfferListings] = useState(null)
@@ -178,6 +228,42 @@ export default function Home() {
             </Link>
             <ul className='grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
               {onLoanBooks.map((book) => (
+                <BookItem
+                  key={book.id}
+                  book={book.data}
+                  id={book.id} />
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {/*ビジネス書*/}
+        {businessBooks && businessBooks.length > 0 && (
+          <div className='m-2 mb-6'>
+            <h2 className='px-3 text-2xl mt-6 font-semibold'>ビジネス書</h2>
+            <Link to="/offers">
+              <p className='px-3 text-sm text-blue-600 hover:text-blue-800 transition duration-150 ease-in-out'>Show more</p>
+            </Link>
+            <ul className='grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
+              {businessBooks.map((book) => (
+                <BookItem
+                  key={book.id}
+                  book={book.data}
+                  id={book.id} />
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {/*技術書*/}
+        {techBooks && techBooks.length > 0 && (
+          <div className='m-2 mb-6'>
+            <h2 className='px-3 text-2xl mt-6 font-semibold'>技術書</h2>
+            <Link to="/offers">
+              <p className='px-3 text-sm text-blue-600 hover:text-blue-800 transition duration-150 ease-in-out'>Show more</p>
+            </Link>
+            <ul className='grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
+              {techBooks.map((book) => (
                 <BookItem
                   key={book.id}
                   book={book.data}

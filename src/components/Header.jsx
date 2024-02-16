@@ -9,7 +9,7 @@ export default function Header() {
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        setPageState("アカウント")
+        setPageState("マイページ")
       } else {
         setPageState("ログイン")
       }
@@ -30,8 +30,8 @@ export default function Header() {
         </div>
         <div>
           <ul className='flex space-x-10'>
-            <li className={`cursor-pointer py-3 text-sm font-semibold text-gray-400 border-b-[3px] border-b-transparent ${pathMatchRoute("/") && '!text-black !border-b-red-500'}`} onClick={() => navigate("/")}>Home</li>
-            <li className={`cursor-pointer py-3 text-sm font-semibold text-gray-400 border-b-[3px] border-b-transparent ${pathMatchRoute("/offers") && '!text-black !border-b-red-500'}`} onClick={() => navigate("/offers")}>Offers</li>
+            <li className={`cursor-pointer py-3 text-sm font-semibold text-gray-400 border-b-[3px] border-b-transparent ${pathMatchRoute("/") && '!text-black !border-b-red-500'}`} onClick={() => navigate("/")}>ホーム</li>
+            <li className={`cursor-pointer py-3 text-sm font-semibold text-gray-400 border-b-[3px] border-b-transparent ${pathMatchRoute("/offers") && '!text-black !border-b-red-500'}`} onClick={() => navigate("/offers")}>今すぐ借りられる本</li>
             <button className={`cursor-pointer py-3 text-sm font-semibold text-gray-400 border-b-[3px] border-b-transparent ${(pathMatchRoute("/sign-in") || pathMatchRoute("/profile")) && '!text-black !border-b-red-500'}`} onClick={() => navigate("/profile")}>{pageState}</button>
           </ul>
         </div>

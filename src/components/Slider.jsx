@@ -13,36 +13,36 @@ import "swiper/css/bundle"
 import { useNavigate } from 'react-router';
 
 export default function Slider() {
-    const [listings, setListings] = useState(null);
+    const [books, setBooks] = useState(null);
     const [loading, setLoading] = useState(true);
     SwiperCore.use([Autoplay, Navigation, Pagination])
     const navigate = useNavigate();
     useEffect(() => {
-        async function fetchListings() {
-            const listingsRef = collection(db, "listings");
-            const q = query(listingsRef, orderBy("timestamp", "desc"), limit(5));
+        async function fetchBooks() {
+            const booksRef = collection(db, "books");
+            const q = query(booksRef, orderBy("timestamp", "desc"), limit(5));
             const querySnap = await getDocs(q);
-            let listings = [];
+            let books = [];
             querySnap.forEach((doc) => {
-                return listings.push({
+                return books.push({
                     id: doc.id,
                     data: doc.data(),
                 });
             });
-            setListings(listings);
+            setBooks(books);
             setLoading(false);
         }
-        fetchListings()
+        fetchBooks()
     }, []);
     if (loading) {
         return <Spinner></Spinner>
     }
-    if (listings.length === 0) {
+    if (books.length === 0) {
         return <></>
     }
 
     return (
-        listings && (
+        books && (
             <>
                 <Swiper
                     slidesPreView={1}
@@ -52,8 +52,8 @@ export default function Slider() {
                     modules={[EffectFade]}
                     autoplay={{ delay: 2000 }}
                 >
-                    {listings.map(({ data, id }) => (
-                        <SwiperSlide key={id} onClick={() => navigate(`/category/${data.type}/${id}`)}>
+                    {books.map(({ data, id }) => (
+                        <SwiperSlide key={id} onClick={() => navigate(`/bookCategory/${data.type}/${id}`)}>
                             <div
                                 style={{
                                     background: `url(${data.imgUrls[0]}) center, no-repeat`,
@@ -61,12 +61,13 @@ export default function Slider() {
                                     //backgroundColor: 'white'
                                 }}
                                 //className="w-full h-[300px] overflow-hidden"
-                                className="mx-auto lg:w-[800px] h-[300px] overflow-hidden"
+                                className="mx-auto lg:w-[257px] h-[364px] overflow-hidden"
                             ></div>
-                            <p className='text-[#f1faee] absolute left-1 top-3 font-medium max-w-[90%] bg-[#457b9d] shadow-lg opacity-90 p-2 rounded-br-3xl'>{data.bookname}</p>
+                            <p className='text-[#f1faee] absolute left-1 top-3 font-medium max-w-[90%] bg-[#457b9d] shadow-lg opacity-90 p-2 rounded-br-3xl'>{data.bookName}</p>
                             <p className='text-[#f1faee] absolute left-1 bottom-3 font-semibold max-w-[90%] bg-[#e63946] shadow-lg opacity-90 p-2 rounded-br-3xl'>
-                                ${data.discountedPrice ?? data.regularPrice}
-                                {data.type === "追加" && " / month"}
+                                {/*${data.discountedPrice ?? data.regularPrice}
+                                {data.type === "追加" && " / month"}*/}
+                                {data.author}
                             </p>
                         </SwiperSlide>
                     ))}
