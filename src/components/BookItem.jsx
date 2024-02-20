@@ -30,7 +30,7 @@ export default function BookItem({ book, id, onEditBook }) {
           <p>
             <div className="flex item-center mt-[10px] space-x-3">
               <div className="flex item-center space-x-1">
-                <p className="font-semibold text-xs">{book.publicationYear}年出版</p>
+                <p className="font-semibold text-xs">{book.publicationYear}年</p>
               </div>
               <div className="flex item-center space-x-1">
                 <p className="font-semibold text-xs">{book.publisher}</p>
