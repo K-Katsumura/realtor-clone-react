@@ -205,7 +205,7 @@ export default function Home() {
         {notOnLoanBooks && notOnLoanBooks.length > 0 && (
           <div className='m-2 mb-6'>
             <h2 className='px-3 text-2xl mt-6 font-semibold'>今すぐ借りられる本</h2>
-            <Link to="/offers">
+            <Link to="/notonloanbook">
               <p className='px-3 text-sm text-blue-600 hover:text-blue-800 transition duration-150 ease-in-out'>Show more</p>
             </Link>
             <ul className='grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
@@ -223,7 +223,7 @@ export default function Home() {
         {onLoanBooks && onLoanBooks.length > 0 && (
           <div className='m-2 mb-6'>
             <h2 className='px-3 text-2xl mt-6 font-semibold'>貸出中の本</h2>
-            <Link to="/offers">
+            <Link to="onloanbook">
               <p className='px-3 text-sm text-blue-600 hover:text-blue-800 transition duration-150 ease-in-out'>Show more</p>
             </Link>
             <ul className='grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
@@ -241,7 +241,7 @@ export default function Home() {
         {businessBooks && businessBooks.length > 0 && (
           <div className='m-2 mb-6'>
             <h2 className='px-3 text-2xl mt-6 font-semibold'>ビジネス書</h2>
-            <Link to="/offers">
+            <Link to="BookCategory/business">
               <p className='px-3 text-sm text-blue-600 hover:text-blue-800 transition duration-150 ease-in-out'>Show more</p>
             </Link>
             <ul className='grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
@@ -259,7 +259,7 @@ export default function Home() {
         {techBooks && techBooks.length > 0 && (
           <div className='m-2 mb-6'>
             <h2 className='px-3 text-2xl mt-6 font-semibold'>技術書</h2>
-            <Link to="/offers">
+            <Link to="/BookCategory/tech">
               <p className='px-3 text-sm text-blue-600 hover:text-blue-800 transition duration-150 ease-in-out'>Show more</p>
             </Link>
             <ul className='grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
@@ -273,6 +273,7 @@ export default function Home() {
           </div>
         )}
 
+        {/*
         {rentListings && rentListings.length > 0 && (
           <div className='m-2 mb-6'>
             <h2 className='px-3 text-2xl mt-6 font-semibold'>Places for rent</h2>
@@ -306,6 +307,8 @@ export default function Home() {
             </ul>
           </div>
         )}
+
+              */}
 
       </div>
     </div>

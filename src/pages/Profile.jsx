@@ -168,9 +168,10 @@ export default function Profile() {
             </div>
           </form>
           <button type="submit" className='w-full bg-blue-600 text-white uppercase px-7 py-3 text-sm font-medium rounded shadow-md hover:bg-blue-700 transition duration-150 ease-in-out hover:shadow-lg active:bg-blue-800'>
-            <Link to="/create-listing" className='flex justify-center items-center'>
+            {/*<Link to="/create-listing" className='flex justify-center items-center'>*/}
+            <Link to="/register-book" className='flex justify-center items-center'>
               <BsBook className='mr-2 text-xl' />
-              本を追加/削除する
+              新しい本を登録する
             </Link>
           </button>
         </div>

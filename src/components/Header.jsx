@@ -1,6 +1,7 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { IoMenu } from "react-icons/io5";
 
 export default function Header() {
   const [pageState, setPageState] = useState("ログイン")
@@ -17,6 +18,14 @@ export default function Header() {
   })
   const auth = getAuth();
 
+  const [open, setOpen] = useState(false);
+  const onClickOpen = () => {
+    setOpen(true);
+  }
+  const onClickClose = () => {
+    setOpen(false);
+  }
+
   function pathMatchRoute(route) {
     if (route === location.pathname) {
       return true;
@@ -28,14 +37,14 @@ export default function Header() {
         <div>
           <img src='https://placehold.jp/500x150.png' alt='logo' className='h-8 cursor-pointer' onClick={() => navigate("/")} />
         </div>
-        <div>
-          <ul className='flex space-x-10'>
-            <li className={`cursor-pointer py-3 text-sm font-semibold text-gray-400 border-b-[3px] border-b-transparent ${pathMatchRoute("/") && '!text-black !border-b-red-500'}`} onClick={() => navigate("/")}>ホーム</li>
-            <li className={`cursor-pointer py-3 text-sm font-semibold text-gray-400 border-b-[3px] border-b-transparent ${pathMatchRoute("/offers") && '!text-black !border-b-red-500'}`} onClick={() => navigate("/offers")}>今すぐ借りられる本</li>
-            <button className={`cursor-pointer py-3 text-sm font-semibold text-gray-400 border-b-[3px] border-b-transparent ${(pathMatchRoute("/sign-in") || pathMatchRoute("/profile")) && '!text-black !border-b-red-500'}`} onClick={() => navigate("/profile")}>{pageState}</button>
-          </ul>
-        </div>
-      </header>
-    </div>
+
+        <ul className='flex space-x-10'>
+          <li className={`max-sm:hidden cursor-pointer py-3 text-sm font-semibold text-gray-400 border-b-[3px] border-b-transparent ${pathMatchRoute("/") && '!text-black !border-b-red-500'}`} onClick={() => navigate("/")}>ホーム</li>
+          <li className={`cursor-pointer py-3 text-sm font-semibold text-gray-400 border-b-[3px] border-b-transparent ${pathMatchRoute("/notonloanbook") && '!text-black !border-b-red-500'}`} onClick={() => navigate("/notonloanbook")}>今すぐ借りる</li>
+          <button className={`cursor-pointer py-3 text-sm font-semibold text-gray-400 border-b-[3px] border-b-transparent ${(pathMatchRoute("/sign-in") || pathMatchRoute("/profile")) && '!text-black !border-b-red-500'}`} onClick={() => navigate("/profile")}>{pageState}</button>
+        </ul>
+
+      </header >
+    </div >
   )
 }

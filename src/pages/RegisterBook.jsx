@@ -137,7 +137,7 @@ export default function RegisterBook() {
         <main className='max-w-md px-2 mx-auto'>
 
             <h1 className='text-3xl text-center mt-6 font-bold'>
-                本を追加する
+                新しい本を登録する
             </h1>
             <form onSubmit={onSubmit}>
                 <p className='text-lg mt-6 font-semibold'>
