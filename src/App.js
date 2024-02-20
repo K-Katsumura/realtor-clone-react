@@ -16,6 +16,9 @@ import Category from "./pages/Category";
 import RegisterBook from "./pages/RegisterBook";
 import EditBooks from "./pages/EditBooks";
 import BookDetail from "./pages/BookDetail";
+import BookCategory from "./pages/BookCategory";
+import OnLoanBook from "./pages/OnLoanBook";
+import NotOnLoanBook from "./pages/NotOnLoanBook";
 
 function App() {
   return (
@@ -39,7 +42,10 @@ function App() {
             element={<BookDetail />} 
           />
           <Route path="/offers" element={<Offers />} />
+          <Route path="/onloanbook" element={<OnLoanBook />} />
+          <Route path="/notonloanbook" element={<NotOnLoanBook />} />
           <Route path="/category/:categoryName" element={<Category />} />
+          <Route path="/bookCategory/:bookCategoryName" element={<BookCategory />} />
 
           <Route path="create-listing" element={<PrivateRoute />}>
             <Route path="/create-listing" element={<CreateListing />} />
