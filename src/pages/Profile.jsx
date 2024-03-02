@@ -189,8 +189,8 @@ export default function Profile() {
                   key={book.id}
                   id={book.id}
                   book={book.data}
-                  //onDelete={() => onDelete(book.id)}
-                  onEditBook={() => onEditBook(book.id)}
+                //onDelete={() => onDelete(book.id)}
+                //onEditBook={() => onEditBook(book.id)}
                 />
               ))}
             </ul>

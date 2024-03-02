@@ -22,15 +22,22 @@ import { IoBookOutline } from "react-icons/io5";
 import { HiOutlineBookOpen } from "react-icons/hi";
 import { LuCalendarDays } from "react-icons/lu";
 import { FaRegBuilding } from "react-icons/fa";
+import { MdEdit, MeEdit } from "react-icons/md";
+import { Link, useNavigate } from 'react-router-dom'
 
 export default function BookDetail() {
     const auth = getAuth();
+    const navigate = useNavigate();
     const params = useParams();
     const [book, setBook] = useState(null);
     const [loading, setLoading] = useState(false);
     const [shareLinkCopied, setShareLinkCopied] = useState(false);
     const [contactLandlord, setContactLandlord] = useState(false);
     SwiperCore.use([Autoplay, Navigation, Pagination]);
+
+    function onEditBook(bookID) {
+        navigate(`/edit-book/${bookID}`);
+    }
 
     useEffect(() => {
         async function fetchBook() {
@@ -100,12 +107,17 @@ export default function BookDetail() {
                             :
                             <p className='bg-red-800 w-full max-w-[200px] rounded-md p-1 text-white text-center font-semibold shadow-md '>貸出中</p>
                         }
+                        {onEditBook && (
+                            <MdEdit MdEdit className="cursor-pointer" onClick={() => onEditBook(params.bookId)}>
+                            </MdEdit>
+                        )
+                        }
                     </div>
-
                     <p className='flex items-center mt-6 mb-1 font-semibold'>
                         <GrUserManager className='text-green-900 mr-1'></GrUserManager>著者：
                         {book?.author}
                     </p>
+
 
                     {/*
                         {listing.Offer && (

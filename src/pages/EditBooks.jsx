@@ -64,8 +64,8 @@ export default function EditBook() {
         //    navigate("/")
         //}
 
-        if (book && book.borrower !== auth.currentUser.uid) {
-            if (book && book.borrower !== "") {
+        if (book && book.status == true) {
+            if (book && book.userRef !== auth.currentUser.uid) {
                 toast.error("この投稿は編集できません。")
                 navigate("/")
             }
@@ -182,6 +182,8 @@ export default function EditBook() {
                 利用状況を編集する
             </h1>
             <form onSubmit={onSubmit}>
+
+                {/*
                 <p className='text-lg mt-6 font-semibold'>
                     カテゴリ
                 </p>
@@ -206,6 +208,7 @@ export default function EditBook() {
                         技術書
                     </button>
                 </div>
+                        */}
 
                 <p className='text-lg mt-6 font-semibold'>
                     本の名前
@@ -237,6 +240,7 @@ export default function EditBook() {
                     disabled>
                 </input>
 
+                {/*
                 <p className='text-lg mt-6 font-semibold'>
                     出版社
                 </p>
@@ -298,7 +302,7 @@ export default function EditBook() {
                     className='w-full px-4 py-2 text-xl text-gray-700 bg-white border border-gray-300 rounded transition duration-150 ease-in-out focus:text-gray-700 focus:bg-white focus:border-slate-600 mb-6'
                     disabled>
                 </textarea>
-
+                    */}
                 {/*
                 <div className='mb-6'>
                     <p className='text-lg font-semibold'>Image</p>
@@ -359,7 +363,7 @@ export default function EditBook() {
                 )}
                 */}
 
-                <button type='submit' className='mb-6 w-full px-7 py-3 bg-blue-600 text-white font-medium text-sm uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out'>
+                <button type='submit' className='mb-6 w-full px-7 py-3 mt-5 bg-blue-600 text-white font-medium text-sm uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out'>
                     決定
                 </button>
             </form>

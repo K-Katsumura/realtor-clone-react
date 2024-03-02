@@ -2,13 +2,14 @@ import { useEffect, useState } from 'react'
 import Slider from '../components/Slider'
 import { collection, getDocs, limit, orderBy, query, where } from 'firebase/firestore'
 import { db } from '../firebase'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import ListingItem from '../components/ListingItem'
 import BookItem from '../components/BookItem'
 
 export default function Home() {
   //今すぐ借りられる本
   const [notOnLoanBooks, setNotOnLoanBooks] = useState(null)
+  const navigate = useNavigate();
   useEffect(() => {
     async function fetchBooks() {
       try {
