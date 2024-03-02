@@ -48,7 +48,7 @@ export default function Slider() {
                     slidesPreView={1}
                     navigation
                     pagination={{ type: "progressbar" }}
-                    //effect="fade"
+                    effect="fade"
                     modules={[EffectFade]}
                     autoplay={{ delay: 3000 }}
                 >
