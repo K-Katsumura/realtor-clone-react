@@ -48,9 +48,9 @@ export default function Slider() {
                     slidesPreView={1}
                     navigation
                     pagination={{ type: "progressbar" }}
-                    //effect="fade"
+                    effect="fade"
                     modules={[EffectFade]}
-                    autoplay={{ delay: 2000 }}
+                    autoplay={{ delay: 3000 }}
                 >
                     {books.map(({ data, id }) => (
                         <SwiperSlide key={id} onClick={() => navigate(`/bookCategory/${data.type}/${id}`)}>
@@ -58,10 +58,10 @@ export default function Slider() {
                                 style={{
                                     background: `url(${data.imgUrls[0]}) center, no-repeat`,
                                     backgroundSize: "cover",
-                                    //backgroundColor: 'white'
+                                    crossFade: "true"
                                 }}
                                 //className="w-full h-[300px] overflow-hidden"
-                                className="mx-auto lg:w-[257px] h-[364px] overflow-hidden"
+                                className="mx-auto w-[257px] h-[364px] overflow-hidden"
                             ></div>
                             <p className='text-[#f1faee] absolute left-1 top-3 font-medium max-w-[90%] bg-[#457b9d] shadow-lg opacity-90 p-2 rounded-br-3xl'>{data.bookName}</p>
                             <p className='text-[#f1faee] absolute left-1 bottom-3 font-semibold max-w-[90%] bg-[#e63946] shadow-lg opacity-90 p-2 rounded-br-3xl'>
