@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { collection, getDoc, getDocs, limit, orderBy, query } from 'firebase/firestore'
+import { collection, getDoc, getDocs, limit, orderBy, query, where } from 'firebase/firestore'
 import { db } from '../firebase'
 import Spinner from '../components/Spinner';
 import { Swiper, SwiperSlide } from "swiper/react"
@@ -7,7 +7,9 @@ import SwiperCore, {
     EffectFade,
     Autoplay,
     Navigation,
-    Pagination
+    Pagination,
+    EffectCube,
+    EffectCards
 } from "swiper"
 import "swiper/css/bundle"
 import { useNavigate } from 'react-router';
@@ -20,7 +22,7 @@ export default function Slider() {
     useEffect(() => {
         async function fetchBooks() {
             const booksRef = collection(db, "books");
-            const q = query(booksRef, orderBy("timestamp", "desc"), limit(5));
+            const q = query(booksRef, where("status", "==", false), orderBy("timestamp", "desc"), limit(5));
             const querySnap = await getDocs(q);
             let books = [];
             querySnap.forEach((doc) => {
@@ -47,10 +49,10 @@ export default function Slider() {
                 <Swiper
                     slidesPreView={1}
                     navigation
-                    pagination={{ type: "progressbar" }}
+                    //pagination={{ type: "progressbar" }}
                     //effect="fade"
-                    modules={[EffectFade]}
                     autoplay={{ delay: 3000 }}
+                    pagination={{ clickable: true }}
                 >
                     {books.map(({ data, id }) => (
                         <SwiperSlide key={id} onClick={() => navigate(`/bookCategory/${data.type}/${id}`)}>

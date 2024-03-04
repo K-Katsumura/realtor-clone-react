@@ -58,7 +58,8 @@ export default function BookDetail() {
             <Swiper
                 slidesPerView={1}
                 navigation
-                pagination={{ type: "progressbar" }}
+                //pagination={{ type: "progressbar" }}
+                pagination={{ clickable: true }}
                 //effect="fade"
                 modules={[EffectFade]}
                 autoplay={{ delay: 2000 }}

@@ -5,11 +5,16 @@ import { db } from '../firebase'
 import { Link, useNavigate } from 'react-router-dom'
 import ListingItem from '../components/ListingItem'
 import BookItem from '../components/BookItem'
+import { scrollFadeIn } from '../components/ScrollFadeIn'
+import logo_r5 from "../components/assets/svg/logo_r5.png";
 
 export default function Home() {
   //今すぐ借りられる本
   const [notOnLoanBooks, setNotOnLoanBooks] = useState(null)
   const navigate = useNavigate();
+  useEffect(() => {
+    scrollFadeIn();
+  }, []);
   useEffect(() => {
     async function fetchBooks() {
       try {
@@ -199,11 +204,30 @@ export default function Home() {
 
   return (
     <div>
-      <Slider></Slider>
+      <div class="bg-blue-900 h-[600px] p-4 text-white flex justify-center items-center">
+        <div className='js-show-on-scroll'>
+          <img src={logo_r5} alt='logo' className='py-3 px-10' />
+          <p className="justify-center text-center mt-5">「今、書庫にある本」が分かる</p>
+        </div>
+      </div>
+
+      <div className='sm:px-3 lg:px-40 js-show-on-scroll'>
+        <h2 className='px-3 text-2xl mt-12 font-semibold'>今すぐ借りられる本</h2>
+        <Link to="/notonloanbook">
+          <p className='px-3 text-sm text-blue-600 hover:text-blue-800 transition duration-150 ease-in-out mb-4'>Show all</p>
+        </Link>
+
+        <div className=''>
+          <Slider></Slider>
+        </div>
+      </div>
+
       <div className='max-w-6xl mx-auto pt-4 space-y-6 '>
 
-        {/*今すぐ借りられる本*/}
-        {notOnLoanBooks && notOnLoanBooks.length > 0 && (
+        {/*
+        <div className='js-show-on-scroll'> 
+          今すぐ借りられる本
+          {notOnLoanBooks && notOnLoanBooks.length > 0 && (
           <div className='m-2 mb-6'>
             <h2 className='px-3 text-2xl mt-6 font-semibold'>今すぐ借りられる本</h2>
             <Link to="/notonloanbook">
@@ -219,60 +243,68 @@ export default function Home() {
             </ul>
           </div>
         )}
+      </div>
+      */}
 
         {/*貸出中の本*/}
-        {onLoanBooks && onLoanBooks.length > 0 && (
-          <div className='m-2 mb-6'>
-            <h2 className='px-3 text-2xl mt-6 font-semibold'>貸出中の本</h2>
-            <Link to="onloanbook">
-              <p className='px-3 text-sm text-blue-600 hover:text-blue-800 transition duration-150 ease-in-out'>Show more</p>
-            </Link>
-            <ul className='grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
-              {onLoanBooks.map((book) => (
-                <BookItem
-                  key={book.id}
-                  book={book.data}
-                  id={book.id} />
-              ))}
-            </ul>
-          </div>
-        )}
+        <div className='js-show-on-scroll'>
+          {onLoanBooks && onLoanBooks.length > 0 && (
+            <div className='m-2 mb-6 js-show-on-scroll'>
+              <h2 className='px-3 text-2xl mt-6 font-semibold'>貸出中の本</h2>
+              <Link to="onloanbook">
+                <p className='px-3 text-sm text-blue-600 hover:text-blue-800 transition duration-150 ease-in-out'>Show more</p>
+              </Link>
+              <ul className='grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
+                {onLoanBooks.map((book) => (
+                  <BookItem
+                    key={book.id}
+                    book={book.data}
+                    id={book.id} />
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
 
         {/*ビジネス書*/}
-        {businessBooks && businessBooks.length > 0 && (
-          <div className='m-2 mb-6'>
-            <h2 className='px-3 text-2xl mt-6 font-semibold'>ビジネス書</h2>
-            <Link to="BookCategory/business">
-              <p className='px-3 text-sm text-blue-600 hover:text-blue-800 transition duration-150 ease-in-out'>Show more</p>
-            </Link>
-            <ul className='grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
-              {businessBooks.map((book) => (
-                <BookItem
-                  key={book.id}
-                  book={book.data}
-                  id={book.id} />
-              ))}
-            </ul>
-          </div>
-        )}
+        <div className='js-show-on-scroll'>
+          {businessBooks && businessBooks.length > 0 && (
+            <div className='m-2 mb-6'>
+              <h2 className='px-3 text-2xl mt-6 font-semibold'>ビジネス書</h2>
+              <Link to="BookCategory/business">
+                <p className='px-3 text-sm text-blue-600 hover:text-blue-800 transition duration-150 ease-in-out'>Show more</p>
+              </Link>
+              <ul className='grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 js-show-on-scroll'>
+                {businessBooks.map((book) => (
+                  <BookItem
+                    key={book.id}
+                    book={book.data}
+                    id={book.id} />
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
 
         {/*技術書*/}
-        {techBooks && techBooks.length > 0 && (
-          <div className='m-2 mb-6'>
-            <h2 className='px-3 text-2xl mt-6 font-semibold'>技術書</h2>
-            <Link to="/BookCategory/tech">
-              <p className='px-3 text-sm text-blue-600 hover:text-blue-800 transition duration-150 ease-in-out'>Show more</p>
-            </Link>
-            <ul className='grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
-              {techBooks.map((book) => (
-                <BookItem
-                  key={book.id}
-                  book={book.data}
-                  id={book.id} />
-              ))}
-            </ul>
-          </div>
-        )}
+        <div className='js-show-on-scroll'>
+          {techBooks && techBooks.length > 0 && (
+            <div className='m-2 mb-6 js-show-on-scroll'>
+              <h2 className='px-3 text-2xl mt-6 font-semibold'>技術書</h2>
+              <Link to="/BookCategory/tech">
+                <p className='px-3 text-sm text-blue-600 hover:text-blue-800 transition duration-150 ease-in-out'>Show more</p>
+              </Link>
+              <ul className='grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
+                {techBooks.map((book) => (
+                  <BookItem
+                    key={book.id}
+                    book={book.data}
+                    id={book.id} />
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
 
         {/*
         {rentListings && rentListings.length > 0 && (
@@ -312,6 +344,6 @@ export default function Home() {
               */}
 
       </div>
-    </div>
+    </div >
   )
 }

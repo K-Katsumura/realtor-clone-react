@@ -47,9 +47,9 @@ export default function Header() {
         </div>
 
         <ul className='flex space-x-10 mt-1'>
-          <li className={`max-sm:hidden cursor-pointer py-3 text-sm font-semibold text-gray-400 border-b-[3px] border-b-transparent ${pathMatchRoute("/") && '!text-black !border-b-red-500'}`} onClick={() => navigate("/")}>ホーム</li>
-          <li className={`cursor-pointer py-3 text-sm font-semibold text-gray-400 border-b-[3px] border-b-transparent ${pathMatchRoute("/notonloanbook") && '!text-black !border-b-red-500'}`} onClick={() => navigate("/notonloanbook")}>今すぐ借りる</li>
-          <button className={`cursor-pointer py-3 text-sm font-semibold text-gray-400 border-b-[3px] border-b-transparent ${(pathMatchRoute("/sign-in") || pathMatchRoute("/profile")) && '!text-black !border-b-red-500'}`} onClick={() => navigate("/profile")}>{pageState}</button>
+          <li className={`max-sm:hidden cursor-pointer py-3 text-sm font-semibold text-gray-400 border-b-[3px] border-b-transparent ${pathMatchRoute("/") && '!text-black !border-b-blue-800'}`} onClick={() => navigate("/")}>ホーム</li>
+          <li className={`cursor-pointer py-3 text-sm font-semibold text-gray-400 border-b-[3px] border-b-transparent ${pathMatchRoute("/notonloanbook") && '!text-black !border-b-blue-800'}`} onClick={() => navigate("/notonloanbook")}>今すぐ借りる</li>
+          <button className={`cursor-pointer py-3 text-sm font-semibold text-gray-400 border-b-[3px] border-b-transparent ${(pathMatchRoute("/sign-in") || pathMatchRoute("/profile")) && '!text-black !border-b-blue-800'}`} onClick={() => navigate("/profile")}>{pageState}</button>
         </ul>
 
       </header >
