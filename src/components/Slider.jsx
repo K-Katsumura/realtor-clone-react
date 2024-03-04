@@ -22,7 +22,7 @@ export default function Slider() {
     useEffect(() => {
         async function fetchBooks() {
             const booksRef = collection(db, "books");
-            const q = query(booksRef, where("status", "==", false), orderBy("timestamp", "desc"), limit(5));
+            const q = query(booksRef, where("status", "==", false), orderBy("timestamp", "desc"), limit(10));
             const querySnap = await getDocs(q);
             let books = [];
             querySnap.forEach((doc) => {
