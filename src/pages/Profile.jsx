@@ -210,6 +210,7 @@ export default function Profile() {
 
       </div>
 
+      {/*
       <div className='max-w-6xl px-3 mt-6 mx-auto'>
         {!loading && listings?.length > 0 && (
           <>
@@ -230,6 +231,7 @@ export default function Profile() {
           </>
         )}
       </div>
+      */}
     </>
   )
 }

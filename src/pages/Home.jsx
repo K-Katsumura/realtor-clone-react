@@ -21,7 +21,7 @@ export default function Home() {
         // get reference
         const booksRef = collection(db, "books");
         // create the query
-        const q = query(booksRef, where("status", "==", false), orderBy("timestamp", "desc"), limit(4));
+        const q = query(booksRef, where("status", "==", false), orderBy("publicationYear", "desc"), limit(4));
         // execute the query
         const querySnap = await getDocs(q);
         const books = [];
@@ -48,7 +48,7 @@ export default function Home() {
         // get reference
         const booksRef = collection(db, "books");
         // create the query
-        const q = query(booksRef, where("status", "==", true), orderBy("timestamp", "desc"), limit(4));
+        const q = query(booksRef, where("status", "==", true), orderBy("publicationYear", "desc"), limit(4));
         // execute the query
         const querySnap = await getDocs(q);
         const books = [];
@@ -75,7 +75,7 @@ export default function Home() {
         // get reference
         const booksRef = collection(db, "books");
         // create the query
-        const q = query(booksRef, where("bookType", "==", "business"), orderBy("timestamp", "desc"), limit(4));
+        const q = query(booksRef, where("bookType", "==", "business"), orderBy("publicationYear", "desc"), limit(4));
         // execute the query
         const querySnap = await getDocs(q);
         const books = [];
@@ -102,7 +102,7 @@ export default function Home() {
         // get reference
         const booksRef = collection(db, "books");
         // create the query
-        const q = query(booksRef, where("bookType", "==", "tech"), orderBy("timestamp", "desc"), limit(4));
+        const q = query(booksRef, where("bookType", "==", "tech"), orderBy("publicationYear", "desc"), limit(4));
         // execute the query
         const querySnap = await getDocs(q);
         const books = [];
@@ -204,21 +204,23 @@ export default function Home() {
 
   return (
     <div>
-      <div class="bg-blue-900 h-[600px] p-4 text-white flex justify-center items-center">
-        <div className='js-show-on-scroll'>
-          <img src={logo_r5} alt='logo' className='py-3 px-10' />
-          <p className="justify-center text-center mt-5">「今、書庫にある本」が分かる</p>
+      <div className='bg-slate-300'>
+        <div class="bg-blue-900 h-[600px] p-4 text-white flex justify-center items-center">
+          <div className='js-show-on-scroll'>
+            <img src={logo_r5} alt='logo' className='py-3 px-10' />
+            <p className="justify-center font-bold text-lg text-center mt-5">「今、書庫にある本」が分かる</p>
+          </div>
         </div>
-      </div>
 
-      <div className='sm:px-3 lg:px-40 js-show-on-scroll'>
-        <h2 className='px-3 text-2xl mt-12 font-semibold'>今すぐ借りられる本</h2>
-        <Link to="/notonloanbook">
-          <p className='px-3 text-sm text-blue-600 hover:text-blue-800 transition duration-150 ease-in-out mb-4'>Show all</p>
-        </Link>
+        <div className='sm:px-3 lg:px-40 js-show-on-scroll'>
+          <h2 className='px-3 text-2xl mt-12 font-semibold'>今すぐ借りられる本</h2>
+          <Link to="/notonloanbook">
+            <p className='px-3 text-sm text-blue-600 hover:text-blue-800 transition duration-150 ease-in-out mb-4'>Show all</p>
+          </Link>
 
-        <div className=''>
-          <Slider></Slider>
+          <div className=''>
+            <Slider></Slider>
+          </div>
         </div>
       </div>
 

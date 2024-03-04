@@ -22,7 +22,7 @@ export default function Slider() {
     useEffect(() => {
         async function fetchBooks() {
             const booksRef = collection(db, "books");
-            const q = query(booksRef, where("status", "==", false), orderBy("timestamp", "desc"), limit(5));
+            const q = query(booksRef, where("status", "==", false), orderBy("publicationYear", "desc"), limit(8));
             const querySnap = await getDocs(q);
             let books = [];
             querySnap.forEach((doc) => {
@@ -63,10 +63,10 @@ export default function Slider() {
                                     crossFade: "true"
                                 }}
                                 //className="w-full h-[300px] overflow-hidden"
-                                className="mx-auto w-[257px] h-[364px] overflow-hidden"
+                                className="mx-auto w-[257px] h-[364px] overflow-hidden mb-12"
                             ></div>
                             <p className='text-[#f1faee] absolute left-1 top-3 font-medium max-w-[90%] bg-[#457b9d] shadow-lg opacity-90 p-2 rounded-br-3xl'>{data.bookName}</p>
-                            <p className='text-[#f1faee] absolute left-1 bottom-3 font-semibold max-w-[90%] bg-[#e63946] shadow-lg opacity-90 p-2 rounded-br-3xl'>
+                            <p className='text-[#f1faee] absolute left-1 bottom-10 font-semibold max-w-[90%] bg-[#e63946] shadow-lg opacity-90 p-2 rounded-br-3xl'>
                                 {/*${data.discountedPrice ?? data.regularPrice}
                                 {data.type === "追加" && " / month"}*/}
                                 {data.author}

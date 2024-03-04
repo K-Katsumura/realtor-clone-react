@@ -21,7 +21,7 @@ export default function BookCategory() {
                 const q = query(
                     bookRef,
                     where("bookType", "==", params.bookCategoryName),
-                    orderBy("timestamp", "desc"),
+                    orderBy("publicationYear", "desc"),
                     limit(4)
                 );
                 const querySnap = await getDocs(q);
@@ -49,7 +49,7 @@ export default function BookCategory() {
             const q = query(
                 bookRef,
                 where("bookType", "==", params.bookCategoryName),
-                orderBy("timestamp", "desc"),
+                orderBy("publicationYear", "desc"),
                 startAfter(lastFetchedBook),
                 limit(4)
             );

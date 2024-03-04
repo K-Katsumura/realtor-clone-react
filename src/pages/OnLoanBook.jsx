@@ -21,7 +21,7 @@ export default function OnLoanBook() {
                 const q = query(
                     bookRef,
                     where("status", "==", true),
-                    orderBy("timestamp", "desc"),
+                    orderBy("publicationYear", "desc"),
                     limit(4)
                 );
                 const querySnap = await getDocs(q);
@@ -49,7 +49,7 @@ export default function OnLoanBook() {
             const q = query(
                 bookRef,
                 where("status", "==", true),
-                orderBy("timestamp", "desc"),
+                orderBy("publicationYear", "desc"),
                 startAfter(lastFetchedBook),
                 limit(4)
             );
