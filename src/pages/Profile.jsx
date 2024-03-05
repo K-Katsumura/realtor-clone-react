@@ -205,12 +205,14 @@ export default function Profile() {
 
         {!loading && books?.length == 0 && (
           <>
-            <h2 className='text-2xl text-center font-semibold mt-20'>
-              貸出状況一覧
-            </h2>
-            <p className='text-center mt-8'>
-              現在、貸出中の本はありません
-            </p>
+            <div className='bg-slate-300 rounded-3xl py-2'>
+              <div className='flex justify-center items-center mb-10'>
+                <img src={book_r1} alt='my page' className='mt-10 h-[25px] md:h-[25px] lg:h-[30px]' />
+              </div>
+              <p className='text-center mb-8'>
+                現在、貸出中の本はありません
+              </p>
+            </div>
           </>
         )}
 
