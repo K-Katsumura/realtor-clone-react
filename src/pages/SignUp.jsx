@@ -8,6 +8,7 @@ import { doc, serverTimestamp, setDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import logo_r4 from "../components/assets/svg/logo_r4.png";
+import signup_r1 from "../components/assets/svg/signup_r1.png";
 
 export default function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
@@ -56,10 +57,9 @@ export default function SignUp() {
 
   return (
     <section>
-      <h1 className='text-3xl text-center mt-20 font-bold'>新規登録</h1>
       <div className='flex justify-center flex-wrap items-center px-6 py-12 max-w-6xl mx-auto'>
         <div className='md:w-[76%] lg:w-[50%] mb-12 md:mb-6 items-center px-6 py-12 max-w-6xl mx-auto'>
-          <img src={logo_r4} alt='logo' className='w-full' />
+          <img src={signup_r1} alt='logo' className='w-full' />
         </div>
         <div className='w-full md:w-[67%] lg:w-[40%] lg:ml-20'>
           <form onSubmit={onSubmit}>

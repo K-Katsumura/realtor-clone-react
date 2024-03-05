@@ -127,7 +127,8 @@ export default function RegisterBook() {
         const docRef = await addDoc(collection(db, "books"), formDataCopy);
         setLoading(false);
         toast.success("登録が完了しました");
-        navigate(`/bookCategory/${formDataCopy.bookType}/${docRef.id}`);
+        //navigate(`/bookCategory/${formDataCopy.bookType}/${docRef.id}`);
+        navigate(`/register-book`);
     }
 
     if (loading) {
@@ -198,7 +199,7 @@ export default function RegisterBook() {
                     value={author}
                     onChange={onChange}
                     placeholder='Author'
-                    maxLength="32"
+                    maxLength="64"
                     minLength="1"
                     required
                     className='w-full px-4 py-2 text-xl text-gray-700 bg-white border border-gray-300 rounded transition duration-150 ease-in-out focus:text-gray-700 focus:bg-white focus:border-slate-600'>

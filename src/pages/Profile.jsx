@@ -8,6 +8,8 @@ import { BsBook } from "react-icons/bs"
 import ListingItem from '../components/ListingItem';
 import BookItem from '../components/BookItem';
 import SecondTestBookItem from '../components/SecondTestBookItem';
+import mypage_r1 from "../components/assets/svg/mypage_r1.png";
+import book_r1 from "../components/assets/svg/book_r1.png";
 
 export default function Profile() {
   const auth = getAuth()
@@ -133,7 +135,9 @@ export default function Profile() {
   return (
     <>
       <section className='max-w-6xl mx-auto flex justify-center items-center flex-col'>
-        <h1 className='text-3xl text-center mt-6 font-bold'>マイページ</h1>
+        <div className='flex justify-center items-center m-10 '>
+          <img src={mypage_r1} alt='my page' className='h-[45px] md:h-[35px] lg:h-[50px]' />
+        </div>
         <div className='w-full md:w-[50%] mt-6 px-3'>
           <form>
 
@@ -177,23 +181,25 @@ export default function Profile() {
         </div>
       </section>
 
-      <div className='max-w-6xl px-3 mt-6 mx-auto'>
+      <div className='max-w-6xl px-3 mb-10 mt-10 mx-auto'>
         {!loading && books?.length > 0 && (
           <>
-            <h2 className='text-2xl text-center font-semibold mt-20'>
-              --貸出状況一覧--
-            </h2>
-            <ul className='grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6 mb-10'>
-              {books.map((book) => (
-                <BookItem
-                  key={book.id}
-                  id={book.id}
-                  book={book.data}
-                //onDelete={() => onDelete(book.id)}
-                //onEditBook={() => onEditBook(book.id)}
-                />
-              ))}
-            </ul>
+            <div className='bg-slate-300 rounded-3xl py-1'>
+              <div className='flex justify-center items-center mb-10'>
+                <img src={book_r1} alt='my page' className='mt-10 h-[25px] md:h-[25px] lg:h-[30px]' />
+              </div>
+              <ul className='grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6 mb-10'>
+                {books.map((book) => (
+                  <BookItem
+                    key={book.id}
+                    id={book.id}
+                    book={book.data}
+                  //onDelete={() => onDelete(book.id)}
+                  //onEditBook={() => onEditBook(book.id)}
+                  />
+                ))}
+              </ul>
+            </div>
           </>
         )}
 

@@ -8,6 +8,8 @@ import Listing from './Listing';
 import { useParams } from 'react-router';
 import BookItem from '../components/BookItem';
 import BookDetail from './BookDetail';
+import business_r1 from "../components/assets/svg/business_r1.png"
+import tech_r1 from "../components/assets/svg/tech_r1.png";
 
 export default function BookCategory() {
     const [books, setBooks] = useState(null)
@@ -73,7 +75,13 @@ export default function BookCategory() {
 
     return <div className='max-w-6xl mx-auto px-3'>
         <h1 className='text-3xl text-center mt-6 font-bold mb-6'>
-            {params.bookCategoryName === "business" ? "ビジネス書" : "技術書"}
+            <div className='flex justify-center items-center m-10 '>
+                {params.bookCategoryName === "business" ?
+                    <img src={business_r1} alt='貸出中の本' className='h-[45px] md:h-[35px] lg:h-[50px]' />
+                    :
+                    <img src={tech_r1} alt='貸出中の本' className='h-[45px] md:h-[35px] lg:h-[50px]' />
+                }
+            </div>
         </h1>
         {loading ? (
             <Spinner />

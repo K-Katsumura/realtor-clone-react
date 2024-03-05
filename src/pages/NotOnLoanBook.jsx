@@ -8,6 +8,7 @@ import Listing from './Listing';
 import { useParams } from 'react-router';
 import BookItem from '../components/BookItem';
 import BookDetail from './BookDetail';
+import imasugu_r1 from "../components/assets/svg/imasugu_r1.png";
 
 export default function NotOnLoanBook() {
     const [books, setBooks] = useState(null)
@@ -72,7 +73,9 @@ export default function NotOnLoanBook() {
 
 
     return <div className='max-w-6xl mx-auto px-3'>
-        <h1 className='text-3xl text-center mt-6 font-bold mb-6'>今すぐ借りられる本</h1>
+        <div className='flex justify-center items-center m-10 '>
+            <img src={imasugu_r1} alt='今すぐ借りられる本' className='h-[45px] md:h-[35px] lg:h-[50px]' />
+        </div>
         {loading ? (
             <Spinner />
         ) : books && books.length > 0 ? (
